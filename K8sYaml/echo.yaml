@@ -22,7 +22,7 @@ spec:
     rollingUpdate:
       maxSurge: 2       
       maxUnavailable: 1
-  replicas: 0
+  replicas: 3
   template:
     metadata:
       labels:
@@ -40,7 +40,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: echo-green
+  name: echo-canary
 spec:
   selector:
     matchLabels:
@@ -50,7 +50,7 @@ spec:
     rollingUpdate:
       maxSurge: 2       
       maxUnavailable: 1
-  replicas: 3
+  replicas: 0
   template:
     metadata:
       labels:
@@ -61,6 +61,6 @@ spec:
       - name: echo
         image: hashicorp/http-echo
         args:
-        - "-text=Green"
+        - "-text=canary"
         ports:
         - containerPort: 5678 
